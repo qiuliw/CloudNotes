@@ -1,10 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { NButton} from 'naive-ui'
+import { AcUnitOutlined } from '@vicons/material'
 </script>
 
 <template>
   <n-button>naive-ui</n-button>
+  <n-icon :size="30" :component="AcUnitOutlined"></n-icon>
 </template>
 
 <style scoped>

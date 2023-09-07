@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7ad8deb-96ea-4bca-894d-5b8518fb7d34" name="Changes" comment="" />
+    <list default="true" id="e7ad8deb-96ea-4bca-894d-5b8518fb7d34" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/zhike-note/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zhike-note/src/App.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -46,7 +51,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1694048236597</updated>
-      <workItem from="1694048237273" duration="2520000" />
+      <workItem from="1694048237273" duration="2638000" />
     </task>
     <servers />
   </component>
