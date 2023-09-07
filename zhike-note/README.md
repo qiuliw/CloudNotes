@@ -1,29 +1,42 @@
-# zhike-note
 
-This template should help get you started developing with Vue 3 in Vite.
+`vue3`、`vite`、`pinia`、`vue-router`、`naive-ui`
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
+```
+pnpm i -D naiveui
+pnpm i -D vfonts #字体
+pnpm i -D @vicons/material #图标
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
+```
+// 你 App 的入口 js 文件
+// 通用字体
+import 'vfonts/Lato.css'
+// 等宽字体
+import 'vfonts/FiraCode.css'
 ```
 
-### Compile and Minify for Production
-
-```sh
-pnpm build
+自动引入
 ```
+pnpm i -D unplugin-auto-import 
+```
+`vite.config.ts`
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    AutoImport({
+      // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
+      imports: ['vue'],
+    }),
+  ],
+})
+```
+
+
+
+
