@@ -31,9 +31,7 @@ const  { changeTheme }  = themeStore;
             </n-badge>
             
             <!-- 主题按钮 -->
-            <n-button circle tertiary
-                @click="changeTheme()"
-            >
+            <n-button circle tertiary @click="changeTheme()">
                 <n-icon size="20" :component="theme.icon"/>
             </n-button>
             
@@ -42,4 +40,5 @@ const  { changeTheme }  = themeStore;
         
         </n-space>
     </n-space>
+
 </template>

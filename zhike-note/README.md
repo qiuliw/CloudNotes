@@ -38,5 +38,17 @@ export default defineConfig({
 ```
 
 
+pinia持久化
+```
+pnpm i pinia-plugin-persistedstate
+```
+
+```js
+import { createPinia } from 'pinia'
+import { PiniaPluginPersistedstate } from 'pinia-plugin-persistedstate'
+const pinia = createPinia()
+pinia.use(PiniaPluginPersistedstate)
+```
+
 
 
