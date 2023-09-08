@@ -10,6 +10,8 @@ const  { changeTheme }  = themeStore;
 const showLoginModal = ref(false)
 
 
+
+
 </script>
 
 <template>
@@ -48,6 +50,7 @@ const showLoginModal = ref(false)
     <!-- 弹出卡片 -->
     <n-modal :show="showLoginModal" transform-origin="center" :close-on-esc="false" :mask-closable="false">
         <n-card style="width: 400px;">
+            <!-- 前往注册 -->
             <n-space justify="space-between" align="center">
                 <h1>登录</h1>
                 <n-text depth="3">
@@ -81,6 +84,7 @@ const showLoginModal = ref(false)
                     <n-button type="success" block>登录</n-button>
                 </n-form-item>
             </n-form>
+            <!-- 忘记密码 -->
             <n-space justify="center" style="cursor: pointer;">
                 <n-text depth="3">忘记密码</n-text>
             </n-space>
