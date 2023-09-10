@@ -9,6 +9,54 @@ const  { changeTheme }  = themeStore;
 
 const showLoginModal = ref(false)
 
+// 登录表单值
+const loginFormValue = ref({
+    email: "",
+    password: "",
+    trim: false
+})
+
+// 登录表单验证规则
+const loginFormRules = {
+    email: [{
+            required: true,
+            message: "请输入邮箱",
+            trigger: ["input","blur"]
+        },{
+            message: "请输入正确邮箱格式",
+            trigger: ["input","blur"],
+            validator: (rule,value) =>{
+                return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
+            }    
+        }
+    ],
+    password: {
+        required: true,
+        message: "请输入密码",
+        trigger: ["input","blur"]
+    },
+    trim: {
+        message: "请认真阅读本公司的条款与协议",
+        trigger: "change",
+        validator:(rule,value) =>{
+            return value;
+        }
+    }
+}
+
+const loginFormRef = ref(null)
+
+// 去登陆
+const toLogin = (e) => {
+    e.preventDefault();
+    //表单合法性验证
+    loginFormRef.value?.validate((errors)=>{
+        if(!errors){
+            alert("登录成功");
+        }
+    })
+}
+
 
 
 
@@ -47,7 +95,7 @@ const showLoginModal = ref(false)
     </n-space>
 
 
-    <!-- 弹出卡片 -->
+    <!-- 登录卡片 -->
     <n-modal :show="showLoginModal" transform-origin="center" :close-on-esc="false" :mask-closable="false">
         <n-card style="width: 400px;">
             <!-- 前往注册 -->
@@ -61,27 +109,27 @@ const showLoginModal = ref(false)
                 </n-text>
             </n-space>
             <!-- 登录表单 -->
-            <n-form>
-                <n-form-item  label="邮箱号码">
-                    <n-input placeholder="请输入邮箱号码">
+            <n-form :model="loginFormValue" :rules="loginFormRules" ref="loginFormRef" >
+                <n-form-item  label="邮箱号码" path="email" first>
+                    <n-input v-model:value="loginFormValue.email" placeholder="请输入邮箱号码">
                         <template #prefix>
                             <n-icon :component="EmailOutlined"/>
                         </template>
                     </n-input>
                 </n-form-item>
-                <n-form-item  label="密码">
-                    <n-input type="password" placeholder="请输入密码">
+                <n-form-item  label="密码" path="password" first>
+                    <n-input v-model:value="loginFormValue.password"  type="password" placeholder="请输入密码">
                         <template #prefix>
                             <n-icon :component="LockOutlined"/>
                         </template>
                     </n-input>
                 </n-form-item>
-                <n-form-item :show-label="false">
-                    <n-checkbox>同意本公司的</n-checkbox>
+                <n-form-item :show-label="false" path="trim">
+                    <n-checkbox v-model:checked="loginFormValue.trim">同意本公司的</n-checkbox>
                     <n-button text type="info">《条款与协议》</n-button>
                 </n-form-item>
                 <n-form-item :show-label="false">
-                    <n-button type="success" block>登录</n-button>
+                    <n-button type="success" @click="toLogin" block>登录</n-button>
                 </n-form-item>
             </n-form>
             <!-- 忘记密码 -->
