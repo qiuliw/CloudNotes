@@ -3,7 +3,8 @@ import { DarkModeRound,NotificationsNoneOutlined } from "@vicons/material"
 import { useThemeStore } from "@/stores/themeStore"
 import { storeToRefs } from "pinia"; //解构为响应式数据
 import Login from "@/components/login/Login.vue"
-import Register from "@/components/login/Register.vue"
+import Register from "@/components/register/Register.vue"
+import RegisterSuccess from "@/components/register/RegisterSuccess.vue"
 
 // 全局主题
 const themeStore = useThemeStore();
@@ -14,7 +15,7 @@ const  { changeTheme }  = themeStore;
 const showLoginModal = ref(false)
 
 // 登录模态框显示的内容(1: 登录、2: 注册、3：注册成功)
-const loginModalStep = ref(Register)
+const loginModalStep = ref(RegisterSuccess)
 </script>
 
 <template>
