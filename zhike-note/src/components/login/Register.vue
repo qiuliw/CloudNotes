@@ -63,13 +63,16 @@ const btnCountDownStatus = ref({
 
 // 按钮倒计时
 const btnCountDown = () => {
+    
+    btnCountDownStatus.value.disabled = true; //禁用按钮
+    btnCountDownStatus.value.text = btnCountDownStatus.value.time +'秒重新获取' //按钮显示文本
+
     btnCountDownStatus.value.clock = setInterval( () => {
         if(btnCountDownStatus.value.time === 1){
             // 不需要计时了
             resetBtnCountDownStatus();//重设获取验证码的状态
         }else {
             // 需要倒计时
-            btnCountDownStatus.value.disabled = true; //禁用按钮
             btnCountDownStatus.value.time--; // 时间递减
             btnCountDownStatus.value.text = btnCountDownStatus.value.time +'秒重新获取' //按钮显示文本
         }
