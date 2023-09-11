@@ -1,5 +1,5 @@
 <script setup>
-import { EmailOutlined,LockOutlined } from "@vicons/material"
+import { EmailOutlined } from "@vicons/material"
 
 // 注册表单值
 const registerFormValue = ref({
@@ -11,6 +11,7 @@ const registerFormValue = ref({
 // 注册表单验证规则
 const registerFormRules = {
     email: [{
+            key: "mail",
             required: true,
             message: "请输入邮箱",
             trigger: ["input","blur"]
@@ -50,6 +51,56 @@ const toRegister = (e) => {
     })
 }
 
+
+// ----------- 获取验证码 -----------
+// 按钮状态
+const btnCountDownStatus = ref({
+    text: '获取验证码', // 显示的文本
+    time: 30, // 还有多少秒结束
+    disabled: false, //是否禁用按钮
+    clock: null // 按钮倒计时任务
+})
+
+// 按钮倒计时
+const btnCountDown = () => {
+    btnCountDownStatus.value.clock = setInterval( () => {
+        if(btnCountDownStatus.value.time === 1){
+            // 不需要计时了
+            resetBtnCountDownStatus();//重设获取验证码的状态
+        }else {
+            // 需要倒计时
+            btnCountDownStatus.value.disabled = true; //禁用按钮
+            btnCountDownStatus.value.time--; // 时间递减
+            btnCountDownStatus.value.text = btnCountDownStatus.value.time +'秒重新获取' //按钮显示文本
+        }
+    },1000)
+}
+
+// 重设获取验证码按钮的状态
+const resetBtnCountDownStatus = () => {
+    //清除任务
+    clearInterval(btnCountDown.value.clock)
+    btnCountDown.value.text="获取验证码"
+    btnCountDown.value.time= 30
+    btnCountDown.value.disabled=false;
+}
+
+// 获取验证码
+const getEmailVC = ()=>{
+    registerFormRef.value?.validate(
+        (errors) => {
+            if(!errors){
+                btnCountDown()
+            }
+        },
+        (rule) => {
+            // 邮箱输入框验证
+            return rule?.key === "mail"
+        }
+    )
+}
+
+
 </script>
 
 <template>
@@ -80,7 +131,7 @@ const toRegister = (e) => {
                     <n-input placeholder="请输入验证码" v-model:value="registerFormValue.vc"/>
                 </n-form-item-gi>
                 <n-form-item-gi>
-                    <n-button block secondary type="success">获取验证码</n-button>
+                    <n-button block secondary type="success" @click="getEmailVC" :disabled="btnCountDownStatus.disabled">{{ btnCountDownStatus.text }}</n-button>
                 </n-form-item-gi> 
             </n-grid>
             
