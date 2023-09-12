@@ -16,6 +16,7 @@ const showLoginModal = ref(false)
 
 // 登录模态框显示的内容(1: 登录、2: 注册、3：注册成功)
 const loginModalStep = ref(RegisterSuccess)
+
 </script>
 
 <template>
@@ -52,6 +53,29 @@ const loginModalStep = ref(RegisterSuccess)
     
     <n-modal :show="showLoginModal" transform-origin="center" :close-on-esc="false" :mask-closable="false">
         <!-- 登录卡片 -->
-        <component :is="loginModalStep"/>
+        <Transition name="bounce" mode="out-in">
+            <component :is="loginModalStep"/>
+        </Transition>
     </n-modal>
 </template>
+
+<style scoped>
+.bounce-enter-active {
+    animation: bounce-in 0.3s;
+}
+.bounce-leave-active {
+    animation: bounce-in 0.3s reverse;
+}
+
+@keyframes bounce-in {
+    0% {
+        transition: scale(0);
+    }
+    50% {
+        transition: scale(1.25);
+    }
+    100% {
+        transition: scale(1);
+    }
+}
+</style>
