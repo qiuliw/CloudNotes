@@ -1,5 +1,11 @@
 <script setup>
 import { EmailOutlined,LockOutlined } from "@vicons/material"
+
+
+// 自定义事件
+let emits = defineEmits(['changeStep'])
+
+
 // 登录表单值
 const loginFormValue = ref({
     email: "",
@@ -48,17 +54,17 @@ const toLogin = (e) => {
     })
 }
 
+
 </script>
 
 <template>
-    <!-- 登录卡片 -->
     <n-card style="width: 400px;">
         <!-- 前往注册 -->
         <n-space justify="space-between" align="center">
             <h1>登录</h1>
             <n-text depth="3">
                 未有账号？
-                <n-button text type="info">
+                <n-button text type="info" @click="emits('changeStep',2)">
                     前往注册
                 </n-button>
             </n-text>

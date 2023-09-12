@@ -1,6 +1,8 @@
 <script setup>
 import { EmailOutlined } from "@vicons/material"
 
+let emits = defineEmits(['changeStep'])
+
 // 注册表单值
 const registerFormValue = ref({
     email: "",
@@ -107,14 +109,13 @@ const getEmailVC = ()=>{
 </script>
 
 <template>
-    <!-- 注册卡片 -->
     <n-card style="width: 400px;">
         <!-- 前往登录 -->
         <n-space justify="space-between" align="center">
             <h1>注册</h1>
             <n-text depth="3">
                 已有账号？
-                <n-button text type="info">
+                <n-button text type="info" @click="emits('changeStep',1)">
                     前往登录
                 </n-button>
             </n-text>
